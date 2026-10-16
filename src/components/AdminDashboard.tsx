@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { QuoteRequest } from '../types';
 import { auth, submitQuoteRequest, updateQuoteStatus, deleteQuoteRequest } from '../firebase';
+import { PhoneNumberInput } from './PhoneNumberInput';
 import {
   browserLocalPersistence,
   browserSessionPersistence,
@@ -733,13 +734,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ quotes, onBackTo
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-slate-300 font-semibold block mb-1">Telefono *</label>
-                  <input
-                    type="tel"
-                    required
+                  <PhoneNumberInput
+                    id="manualPhone"
                     value={manualPhone}
-                    onChange={(e) => setManualPhone(e.target.value)}
-                    placeholder="Es. 333 1234567"
-                    className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white"
+                    onChange={setManualPhone}
+                    theme="dark"
                   />
                 </div>
                 <div>

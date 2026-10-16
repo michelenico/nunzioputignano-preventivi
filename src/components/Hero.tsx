@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { submitQuoteRequest } from '../firebase';
 import { ServiceTypeOption } from '../types';
+import { PhoneNumberInput } from './PhoneNumberInput';
 
 interface HeroProps {
   onOpenVinHelper: () => void;
@@ -42,7 +43,8 @@ export const Hero: React.FC<HeroProps> = ({
       setErrorMessage('Inserisci il tuo nome e cognome completo.');
       return;
     }
-    if (!phoneNumber.trim() || phoneNumber.trim().length < 5) {
+    const nationalPhoneNumber = phoneNumber.replace(/^\+\d+\s*/, '').replace(/\D/g, '');
+    if (nationalPhoneNumber.length < 5) {
       setErrorMessage('Inserisci un numero di telefono valido per essere ricontattato.');
       return;
     }
@@ -250,14 +252,10 @@ export const Hero: React.FC<HeroProps> = ({
                     {/* Numero di telefono */}
                     <div>
                       <label htmlFor="phoneNumber" className="sr-only">Numero di telefono *</label>
-                      <input
+                      <PhoneNumberInput
                         id="phoneNumber"
-                        type="tel"
-                        required
                         value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Numero di telefono *"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                        onChange={setPhoneNumber}
                       />
                     </div>
 

@@ -71,7 +71,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
         </div>
 
         {/* 3-column / 2-column Grid matching the mockup */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
             <div
               key={service.id}
