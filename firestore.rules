@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    function isValidQuoteRequest(data) {
+      return data.keys().hasAll(['fullName', 'phoneNumber', 'carModel', 'vin', 'notes', 'createdAt']) &&
+        data.keys().hasOnly(['fullName', 'phoneNumber', 'carModel', 'vin', 'serviceType', 'notes', 'status', 'createdAt']) &&
+        data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 100 &&
+        data.phoneNumber is string && data.phoneNumber.size() >= 5 && data.phoneNumber.size() <= 30 &&
+        data.carModel is string && data.carModel.size() >= 2 && data.carModel.size() <= 100 &&
+        data.vin is string && data.vin.size() >= 3 && data.vin.size() <= 30 &&
+        data.notes is string && data.notes.size() <= 2000 &&
+        (!('serviceType' in data) || (data.serviceType is string && data.serviceType.size() <= 100)) &&
+        (!('status' in data) || (data.status is string && data.status in ['nuova', 'contattato', 'in_lavorazione', 'completata'])) &&
+        data.createdAt is timestamp;
+    }
+
+    match /quoteRequests/{requestId} {
+      allow get, list: if isValidId(requestId) && isAdmin();
+      allow create: if isValidId(requestId) &&
+                       isValidQuoteRequest(incoming()) &&
+                       incoming().status == 'nuova' &&
+                       incoming().createdAt == request.time;
+      allow update: if isValidId(requestId) &&
+                       isAdmin() &&
+                       request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']) &&
+                       request.resource.data.status in ['nuova', 'contattato', 'in_lavorazione', 'completata'];
+      allow delete: if isValidId(requestId) && isAdmin();
+    }
+  }
+}

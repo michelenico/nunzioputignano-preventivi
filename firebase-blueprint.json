@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "quoteRequest": {
+      "title": "Richiesta Preventivo",
+      "description": "Dati della richiesta di preventivo inviata dall'utente dalla landing page",
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "description": "Nome e cognome del cliente",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Numero di telefono del cliente",
+          "minLength": 5,
+          "maxLength": 30
+        },
+        "carModel": {
+          "type": "string",
+          "description": "Marca e modello della macchina",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "vin": {
+          "type": "string",
+          "description": "Numero telaio dell'auto (VIN)",
+          "minLength": 3,
+          "maxLength": 30
+        },
+        "serviceType": {
+          "type": "string",
+          "description": "Tipologia di intervento richiesto (opzionale)",
+          "maxLength": 100
+        },
+        "notes": {
+          "type": "string",
+          "description": "Note e spiegazione sui lavori richiesti",
+          "maxLength": 2000
+        },
+        "status": {
+          "type": "string",
+          "description": "Stato di avanzamento della pratica",
+          "enum": ["nuova", "contattato", "in_lavorazione", "completata"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Data e ora di invio della richiesta"
+        }
+      },
+      "required": ["fullName", "phoneNumber", "carModel", "vin", "notes", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/quoteRequests/{requestId}": {
+      "schema": "quoteRequest",
+      "description": "Collezione pubblica per l'invio e consultazione delle richieste di preventivo"
+    }
+  }
+}
