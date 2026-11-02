@@ -1,0 +1,6 @@
+{
+  "name": "Autofficina Nunzio Putignano",
+  "description": "Landing page ufficiale dell'Autofficina Nunzio Putignano a Palagiano con richiesta preventivo online e gestione appuntamenti.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
