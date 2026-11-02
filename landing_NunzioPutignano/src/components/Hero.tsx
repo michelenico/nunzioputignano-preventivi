@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { submitQuoteRequest } from '../firebase';
 import { ServiceTypeOption } from '../types';
+import { PhoneNumberInput } from './PhoneNumberInput';
 
 interface HeroProps {
   onOpenVinHelper: () => void;
@@ -42,7 +43,8 @@ export const Hero: React.FC<HeroProps> = ({
       setErrorMessage('Inserisci il tuo nome e cognome completo.');
       return;
     }
-    if (!phoneNumber.trim() || phoneNumber.trim().length < 5) {
+    const nationalPhoneNumber = phoneNumber.replace(/^\+\d+\s*/, '').replace(/\D/g, '');
+    if (nationalPhoneNumber.length < 5) {
       setErrorMessage('Inserisci un numero di telefono valido per essere ricontattato.');
       return;
     }
@@ -134,7 +136,7 @@ export const Hero: React.FC<HeroProps> = ({
               La tua auto ha <br />
               un problema? <br />
               <span className="text-orange-500 underline decoration-orange-500/40 decoration-4 underline-offset-8">
-                Vediamo insieme.
+                Vediamolo insieme.
               </span>
             </h1>
 
@@ -250,14 +252,10 @@ export const Hero: React.FC<HeroProps> = ({
                     {/* Numero di telefono */}
                     <div>
                       <label htmlFor="phoneNumber" className="sr-only">Numero di telefono *</label>
-                      <input
+                      <PhoneNumberInput
                         id="phoneNumber"
-                        type="tel"
-                        required
                         value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Numero di telefono *"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                        onChange={setPhoneNumber}
                       />
                     </div>
 
@@ -311,8 +309,6 @@ export const Hero: React.FC<HeroProps> = ({
                         <option value="Diagnosi elettronica">Diagnosi elettronica (spie accese)</option>
                         <option value="Riparazioni meccaniche">Riparazioni meccaniche (motore, freni, frizione)</option>
                         <option value="Tagliandi e manutenzione">Tagliandi e manutenzione periodica</option>
-                        <option value="Pneumatici">Pneumatici (sostituzione, convergenza)</option>
-                        <option value="Revisioni">Revisione periodica ministeriale</option>
                         <option value="Altro intervento">Altro intervento personalizzato</option>
                       </select>
                       <ChevronDown className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />

@@ -36,7 +36,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
         </svg>
       ),
-      badge: 'Ricambi OE'
+      badge: 'Ricambi'
     },
     {
       id: 'tagliandi',
@@ -50,34 +50,6 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
       ),
       badge: 'Certificato'
     },
-    {
-      id: 'pneumatici',
-      title: 'Pneumatici',
-      desc: 'Cambio gomme stagionale estivo/invernale, equilibratura dinamica e controllo professionale dell’usura.',
-      icon: (
-        <svg className="w-9 h-9 text-orange-600 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="9" />
-          <circle cx="12" cy="12" r="4" />
-          <path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24" />
-        </svg>
-      ),
-      badge: 'Convergenza'
-    },
-    {
-      id: 'revisioni',
-      title: 'Revisioni',
-      desc: 'Verifichiamo la scadenza ministeriale e ti aiutiamo a metterti in regola con pre-revisione completa.',
-      icon: (
-        <svg className="w-9 h-9 text-orange-600 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
-          <polyline points="10 9 9 9 8 9" />
-        </svg>
-      ),
-      badge: 'Ministeriale'
-    }
   ];
 
   return (
@@ -93,13 +65,13 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
             Cosa possiamo fare per la tua auto?
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
-            Dalla diagnosi alle riparazioni, fino a manutenzione e pneumatici.
+            Diagnosi, riparazioni e manutenzione
             Ti aiutiamo a rimetterti in strada, in sicurezza.
           </p>
         </div>
 
         {/* 3-column / 2-column Grid matching the mockup */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
             <div
               key={service.id}
@@ -136,9 +108,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
           {/* Bonus 6th Box: Customer Service Assistance */}
           <div className="p-7 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 text-white flex flex-col justify-between border border-slate-800 shadow-lg">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 mb-6 font-bold text-lg">
-                PN
-              </div>
+                <img src="https://res.cloudinary.com/dp2l14rly/image/upload/f_auto,q_auto,w_400,c_limit/v1790711679/inlab/generale/NUNZIO_PUTIGNANO_AUTOFFICINA_grafiche_dxhn5h.png" alt="Logo Nunzio putignano" className="h-20 w-20 shrink-0 object-contain" />
               <h3 className="text-xl font-bold text-white mb-2">
                 Non sai esattamente cosa ha l'auto?
               </h3>
