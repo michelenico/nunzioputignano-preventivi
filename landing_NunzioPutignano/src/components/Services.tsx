@@ -108,7 +108,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
           {/* Bonus 6th Box: Customer Service Assistance */}
           <div className="p-7 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 text-white flex flex-col justify-between border border-slate-800 shadow-lg">
             <div>
-                <img src="https://res.cloudinary.com/dp2l14rly/image/upload/f_auto,q_auto,w_400,c_limit/v1790711679/inlab/generale/NUNZIO_PUTIGNANO_AUTOFFICINA_grafiche_dxhn5h.png" alt="Logo Nunzio putignano" className="h-20 w-20 shrink-0 object-contain" />
+                <img src="https://res.cloudinary.com/dp2l14rly/image/upload/f_auto,q_auto,w_400,c_limit/v1790711679/inlab/generale/NUNZIO_PUTIGNANO_AUTOFFICINA_grafiche_dxhn5h.png" alt="Logo Nunzio putignano" className="h-14 w-14 shrink-0 object-contain" />
               <h3 className="text-xl font-bold text-white mb-2">
                 Non sai esattamente cosa ha l'auto?
               </h3>
