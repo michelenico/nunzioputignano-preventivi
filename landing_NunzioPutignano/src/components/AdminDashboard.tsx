@@ -25,7 +25,8 @@ import {
   EyeOff
 } from 'lucide-react';
 import { QuoteRequest } from '../types';
-import { auth, submitQuoteRequest, updateQuoteStatus, deleteQuoteRequest } from '../firebase';
+import { auth } from '../firebaseClient';
+import { submitQuoteRequest, updateQuoteStatus, deleteQuoteRequest } from '../firebase';
 import { PhoneNumberInput } from './PhoneNumberInput';
 import {
   browserLocalPersistence,
