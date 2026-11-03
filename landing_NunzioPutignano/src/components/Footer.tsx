@@ -34,20 +34,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDashboard }) => {
         </div>
 
         {/* Secondary Info & Timetable */}
-        <div className="py-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-xs text-slate-500">
+        <div className="py-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-xs text-slate-400">
           <div>
-            <h4 className="text-slate-300 font-bold uppercase text-[11px] mb-2 tracking-wider">
+            <h3 className="text-slate-300 font-bold uppercase text-[11px] mb-2 tracking-wider">
               Orari di Apertura
-            </h4>
+            </h3>
             <p>Lunedì - Venerdì: 08:00 - 13:00 / 15:00 - 19:30</p>
             <p>Sabato: 08:00 - 12:30</p>
             <p>Domenica: Chiuso</p>
           </div>
 
           <div>
-            <h4 className="text-slate-300 font-bold uppercase text-[11px] mb-2 tracking-wider">
+            <h3 className="text-slate-300 font-bold uppercase text-[11px] mb-2 tracking-wider">
               Sede Operativa
-            </h4>
+            </h3>
             <p>Via Caduti di Nassirya</p>
             <p>74019 Palagiano (TA) - Puglia, Italia</p>
             <p className="mt-1 text-slate-400">Tel: 324 999 1990</p>
@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDashboard }) => {
             </div>
 
         {/* Copyright notice */}
-        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-600 gap-2">
+        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-2">
           <p>© {new Date().getFullYear()} Autofficina Nunzio Putignano. Tutti i diritti riservati.</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">

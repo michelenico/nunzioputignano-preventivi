@@ -20,7 +20,7 @@ export const WhyChooseUs: React.FC = () => {
                 <div className="w-full max-w-sm space-y-4 relative z-10">
                   <div className="p-5 rounded-2xl bg-[#1e232e]/90 border border-slate-700 shadow-xl">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center font-black text-white text-base">
+                      <div className="w-10 h-10 rounded-xl bg-orange-700 flex items-center justify-center font-black text-white text-base">
                         PN
                       </div>
                       <div>
@@ -123,7 +123,7 @@ export const WhyChooseUs: React.FC = () => {
             <div className="pt-2">
               <a
                 href="#preventivo"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm uppercase tracking-wide rounded-xl shadow-lg shadow-orange-950/50 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm uppercase tracking-wide rounded-xl shadow-lg shadow-orange-950/50 transition-colors"
               >
                 Raccontaci il tuo problema
               </a>

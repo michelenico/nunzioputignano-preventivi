@@ -58,7 +58,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
         
         {/* Section Header */}
         <div className="text-left max-w-2xl mb-12 sm:mb-16">
-          <div className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">
+          <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-2">
             I NOSTRI SERVIZI
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -98,7 +98,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-orange-600 group-hover:translate-x-1 transition-transform">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-orange-700 group-hover:translate-x-1 transition-transform">
                 <span>Richiedi preventivo per questo servizio</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
               </div>
@@ -119,7 +119,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
 
             <a
               href="tel:3249991990"
-              className="inline-flex items-center justify-center w-full py-3 bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold uppercase rounded-xl transition-colors tracking-wider"
+              className="inline-flex items-center justify-center w-full py-3 bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold uppercase rounded-xl transition-colors tracking-wider"
             >
               Chiama il meccanico
             </a>

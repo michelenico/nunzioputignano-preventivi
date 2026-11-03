@@ -67,7 +67,7 @@ export const VinHelperModal: React.FC<VinHelperModalProps> = ({ isOpen, onClose 
         <div className="mt-6 flex justify-end">
           <button
             onClick={onClose}
-            className="w-full sm:w-auto px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-medium rounded-lg transition-colors text-sm"
+            className="w-full sm:w-auto px-5 py-2.5 bg-orange-700 hover:bg-orange-800 text-white font-medium rounded-lg transition-colors text-sm"
           >
             Ho capito, torna al modulo
           </button>

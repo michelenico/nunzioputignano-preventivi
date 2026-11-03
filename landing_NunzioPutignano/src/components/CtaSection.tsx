@@ -49,7 +49,7 @@ export const CtaSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <a
               href="tel:3249991990"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-orange-950/50 transition-colors"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm rounded-xl shadow-lg shadow-orange-950/50 transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span>Chiama ora</span>

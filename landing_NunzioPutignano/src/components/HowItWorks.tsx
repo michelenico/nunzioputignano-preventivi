@@ -26,7 +26,7 @@ export const HowItWorks: React.FC = () => {
         
         {/* Header */}
         <div className="text-left max-w-2xl mb-14 sm:mb-16">
-          <div className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">
+          <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-2">
             COME FUNZIONA
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -44,7 +44,7 @@ export const HowItWorks: React.FC = () => {
               
               {/* Row with Number Badge & Desktop Arrow */}
               <div className="flex items-center justify-between w-full mb-5">
-                <div className="w-12 h-12 rounded-full bg-orange-600 text-white flex items-center justify-center font-black text-lg shadow-md shadow-orange-600/30">
+                <div className="w-12 h-12 rounded-full bg-orange-700 text-white flex items-center justify-center font-black text-lg shadow-md shadow-orange-700/30">
                   {step.number}
                 </div>
 

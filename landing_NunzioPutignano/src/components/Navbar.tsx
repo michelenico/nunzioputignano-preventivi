@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDashboard, quotesCount }) 
 
             <a
               href="tel:3249991990"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold tracking-wide uppercase shadow-lg shadow-orange-900/30 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold tracking-wide uppercase shadow-lg shadow-orange-900/30 transition-all"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>Chiamaci</span>
@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDashboard, quotesCount }) 
             >
               <Database className="w-5 h-5" />
               {quotesCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-700 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
                   {quotesCount}
                 </span>
               )}
@@ -142,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDashboard, quotesCount }) 
           <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
             <a
               href="tel:3249991990"
-              className="flex items-center justify-center gap-2 w-full py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm rounded-xl"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm rounded-xl"
             >
               <Phone className="w-4 h-4" />
               Chiama 324 999 1990
