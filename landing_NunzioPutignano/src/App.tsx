@@ -121,7 +121,7 @@ export default function App() {
           href="https://wa.me/393249991990?text=Salve%20Autofficina%20Putignano,%20vorrei%20informazioni%20su%20un%20preventivo."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 p-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-xl shadow-emerald-950/60 transition-transform hover:scale-105 active:scale-95 group"
+          className="flex items-center gap-2 p-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full shadow-xl shadow-emerald-950/60 transition-transform hover:scale-105 active:scale-95 group"
           aria-label="Contattaci su WhatsApp"
         >
           <MessageSquare className="w-5 h-5" />
