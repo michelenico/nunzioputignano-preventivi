@@ -14,11 +14,11 @@ export const WhyChooseUs: React.FC = () => {
               <div className="aspect-[4/5] w-full bg-gradient-to-b from-[#1a1e27] via-[#151820] to-[#0e1014] relative flex items-center justify-center p-6">
                 
                 {/* Glow & Lighting */}
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-48 h-48 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(234, 88, 12, 0.16), transparent 70%)' }} />
 
                 {/* Technical Graphic of Workshop / Mechanic Engine */}
                 <div className="w-full max-w-sm space-y-4 relative z-10">
-                  <div className="p-5 rounded-2xl bg-[#1e232e]/90 border border-slate-700 shadow-xl backdrop-blur-sm">
+                  <div className="p-5 rounded-2xl bg-[#1e232e]/90 border border-slate-700 shadow-xl">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center font-black text-white text-base">
                         PN

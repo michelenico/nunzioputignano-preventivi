@@ -1,19 +1,19 @@
 import { initializeApp, getApps, getApp, type FirebaseOptions } from 'firebase/app';
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
-import { 
-  getFirestore, 
-  collection, 
-  doc, 
-  setDoc, 
-  onSnapshot, 
-  serverTimestamp, 
-  query, 
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  serverTimestamp,
+  query,
   orderBy,
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { QuoteRequest } from './types';
+import type { QuoteRequest } from './types';
 import firebaseAppletConfig from '../firebase-applet-config.json';
 
 const firebaseConfig: FirebaseOptions = {
@@ -37,7 +37,6 @@ if (missingConfig.length > 0) {
   throw new Error(`Missing Firebase env vars: ${missingConfig.join(', ')}`);
 }
 
-// Initialize Firebase
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 if (recaptchaSiteKey) {
   initializeAppCheck(app, {
@@ -45,6 +44,7 @@ if (recaptchaSiteKey) {
     isTokenAutoRefreshEnabled: true,
   });
 }
+
 export const db = getFirestore(app, firestoreDatabaseId);
 export const auth = getAuth(app);
 
@@ -53,8 +53,6 @@ export enum OperationType {
   UPDATE = 'update',
   DELETE = 'delete',
   LIST = 'list',
-  GET = 'get',
-  WRITE = 'write',
 }
 
 export interface FirestoreErrorInfo {
@@ -67,7 +65,7 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
   const errInfo: FirestoreErrorInfo = {
     error: error instanceof Error ? error.message : String(error),
     operationType,
-    path
+    path,
   };
   console.warn('Firestore Error Context:', JSON.stringify(errInfo));
   return errInfo;
@@ -92,8 +90,7 @@ export async function submitQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
   }
 
   try {
-    const docRef = doc(db, COLLECTION_NAME, customId);
-    await setDoc(docRef, cleanData);
+    await setDoc(doc(db, COLLECTION_NAME, customId), cleanData);
     return { id: customId, success: true };
   } catch (error) {
     handleFirestoreError(error, OperationType.CREATE, `${COLLECTION_NAME}/${customId}`);
@@ -103,13 +100,12 @@ export async function submitQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
 
 export function subscribeToQuoteRequests(
   onUpdate: (quotes: QuoteRequest[]) => void,
-  onError?: (err: any) => void
+  onError?: (err: any) => void,
 ) {
   try {
-    const q = query(collection(db, COLLECTION_NAME), orderBy('createdAt', 'desc'));
-    
+    const quotesQuery = query(collection(db, COLLECTION_NAME), orderBy('createdAt', 'desc'));
     return onSnapshot(
-      q,
+      quotesQuery,
       (snapshot) => {
         const results: QuoteRequest[] = [];
         snapshot.forEach((docSnap) => {
@@ -123,20 +119,19 @@ export function subscribeToQuoteRequests(
             serviceType: data.serviceType || 'Generale',
             notes: data.notes || '',
             status: data.status || 'nuova',
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : new Date().toISOString()
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : new Date().toISOString(),
           });
         });
-
         onUpdate(results);
       },
       (error) => {
         handleFirestoreError(error, OperationType.LIST, COLLECTION_NAME);
         onUpdate([]);
-        if (onError) onError(error);
-      }
+        onError?.(error);
+      },
     );
-  } catch (err) {
-    handleFirestoreError(err, OperationType.LIST, COLLECTION_NAME);
+  } catch (error) {
+    handleFirestoreError(error, OperationType.LIST, COLLECTION_NAME);
     onUpdate([]);
     return () => {};
   }
@@ -144,8 +139,7 @@ export function subscribeToQuoteRequests(
 
 export async function updateQuoteStatus(id: string, status: QuoteRequest['status']): Promise<void> {
   try {
-    const docRef = doc(db, COLLECTION_NAME, id);
-    await updateDoc(docRef, { status });
+    await updateDoc(doc(db, COLLECTION_NAME, id), { status });
   } catch (error) {
     handleFirestoreError(error, OperationType.UPDATE, `${COLLECTION_NAME}/${id}`);
     throw error;
@@ -154,8 +148,7 @@ export async function updateQuoteStatus(id: string, status: QuoteRequest['status
 
 export async function deleteQuoteRequest(id: string): Promise<void> {
   try {
-    const docRef = doc(db, COLLECTION_NAME, id);
-    await deleteDoc(docRef);
+    await deleteDoc(doc(db, COLLECTION_NAME, id));
   } catch (error) {
     handleFirestoreError(error, OperationType.DELETE, `${COLLECTION_NAME}/${id}`);
     throw error;

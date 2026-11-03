@@ -9,7 +9,7 @@ import {
   Car,
   ChevronDown
 } from 'lucide-react';
-import { submitQuoteRequest } from '../firebase';
+import { preloadFirebaseClient, submitQuoteRequest } from '../firebase';
 import { ServiceTypeOption } from '../types';
 import { PhoneNumberInput } from './PhoneNumberInput';
 
@@ -96,11 +96,11 @@ export const Hero: React.FC<HeroProps> = ({
       className="relative min-h-[640px] pt-10 pb-16 lg:py-20 bg-[#121419] overflow-hidden"
     >
       {/* Background Automotive Visual Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-35 mix-blend-luminosity overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Subtle Workshop Gradient & Car Silhouette */}
-        <div className="absolute -top-32 right-0 w-[600px] lg:w-[850px] h-full bg-gradient-to-l from-orange-500/10 via-transparent to-transparent blur-3xl" />
+        <div className="absolute -top-32 right-0 w-[600px] lg:w-[850px] h-full" style={{ background: 'radial-gradient(ellipse at top right, rgba(249, 115, 22, 0.1), transparent 70%)' }} />
         <svg
-          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[700px] lg:w-[950px] h-auto text-slate-800/40"
+          className="absolute -right-20 top-1/2 hidden -translate-y-1/2 w-[700px] lg:block lg:w-[950px] h-auto text-slate-800/40"
           viewBox="0 0 1000 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@ export const Hero: React.FC<HeroProps> = ({
                     </div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-3.5">
+                  <form onFocus={preloadFirebaseClient} onSubmit={handleSubmit} className="space-y-3.5">
                     {/* Nome e cognome */}
                     <div>
                       <label htmlFor="fullName" className="sr-only">Nome e cognome *</label>

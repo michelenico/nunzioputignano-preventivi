@@ -10,7 +10,7 @@ export const VinHelperModal: React.FC<VinHelperModalProps> = ({ isOpen, onClose 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 animate-in fade-in duration-200">
       <div 
         className="relative w-full max-w-lg bg-[#1a1d24] text-slate-100 rounded-2xl border border-slate-700/80 shadow-2xl overflow-hidden p-6"
         role="dialog"

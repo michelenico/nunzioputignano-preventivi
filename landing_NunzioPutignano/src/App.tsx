@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { HowItWorks } from './components/HowItWorks';
 import { CtaSection } from './components/CtaSection';
 import { Footer } from './components/Footer';
-import { VinHelperModal } from './components/VinHelperModal';
-import { AdminDashboard } from './components/AdminDashboard';
-import { QuoteRequest } from './types';
-import { auth, subscribeToQuoteRequests } from './firebase';
-import { getIdTokenResult, onAuthStateChanged } from 'firebase/auth';
 import { MessageSquare, ChevronUp } from 'lucide-react';
 
+const AdminContainer = lazy(() => import('./components/AdminContainer').then(({ AdminContainer }) => ({ default: AdminContainer })));
+const VinHelperModal = lazy(() => import('./components/VinHelperModal').then(({ VinHelperModal }) => ({ default: VinHelperModal })));
+
 export default function App() {
-  const [quotes, setQuotes] = useState<QuoteRequest[]>([]);
   const [selectedService, setSelectedService] = useState<string>('');
   const [isVinHelperOpen, setIsVinHelperOpen] = useState(false);
   const [currentView, setCurrentView] = useState<'site' | 'admin'>(() => {
@@ -35,33 +32,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Subscribe to real-time quotes updates from Firestore
   useEffect(() => {
-    let active = true;
-    let authCheck = 0;
-    let unsubscribeQuotes: (() => void) | undefined;
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      const currentCheck = ++authCheck;
-      unsubscribeQuotes?.();
-      unsubscribeQuotes = undefined;
-
-      if (!user) {
-        setQuotes([]);
-        return;
-      }
-
-      void getIdTokenResult(user, true).then(({ claims }) => {
-        if (!active || currentCheck !== authCheck) return;
-        if (claims.admin === true) {
-          unsubscribeQuotes = subscribeToQuoteRequests(setQuotes, () => setQuotes([]));
-        } else {
-          setQuotes([]);
-        }
-      }).catch(() => {
-        if (active && currentCheck === authCheck) setQuotes([]);
-      });
-    });
-
     const handleScroll = () => {
       if (window.scrollY > 400) {
         setShowScrollTop(true);
@@ -70,11 +41,8 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      active = false;
-      unsubscribeAuth();
-      unsubscribeQuotes?.();
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -106,10 +74,9 @@ export default function App() {
   // If the admin view is requested (via #admin or button click), render the full password-protected page
   if (currentView === 'admin') {
     return (
-      <AdminDashboard
-        quotes={quotes}
-        onBackToSite={backToSiteView}
-      />
+      <Suspense fallback={null}>
+        <AdminContainer onBackToSite={backToSiteView} />
+      </Suspense>
     );
   }
 
@@ -141,10 +108,11 @@ export default function App() {
       <Footer onOpenDashboard={openAdminView} />
 
       {/* Modals */}
-      <VinHelperModal
-        isOpen={isVinHelperOpen}
-        onClose={() => setIsVinHelperOpen(false)}
-      />
+      {isVinHelperOpen && (
+        <Suspense fallback={null}>
+          <VinHelperModal isOpen onClose={() => setIsVinHelperOpen(false)} />
+        </Suspense>
+      )}
 
       {/* Floating Action Controls for Mobile / Desktop */}
       <div className="fixed bottom-4 right-4 z-30 flex flex-col items-end gap-2.5">

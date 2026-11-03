@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDashboard }) => {
           
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src="https://res.cloudinary.com/dp2l14rly/image/upload/f_auto,q_auto,w_400,c_limit/v1790711679/inlab/generale/NUNZIO_PUTIGNANO_AUTOFFICINA_grafiche_dxhn5h.png" alt="Logo Nunzio putignano" className="h-20 w-20 shrink-0 object-contain" />
+            <img src="https://res.cloudinary.com/dp2l14rly/image/upload/f_auto,q_auto,w_160,c_limit/v1790711679/inlab/generale/NUNZIO_PUTIGNANO_AUTOFFICINA_grafiche_dxhn5h.png" alt="Logo Nunzio putignano" width="160" height="160" loading="lazy" decoding="async" className="h-20 w-20 shrink-0 object-contain" />
             <div className="flex flex-col">
               <span className="text-white font-extrabold text-base tracking-tight leading-none">
                 NUNZIO PUTIGNANO
